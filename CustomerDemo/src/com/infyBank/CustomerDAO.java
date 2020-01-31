@@ -78,4 +78,27 @@ public class CustomerDAO implements ICustomer{
 		return rowsAffected;
 	}
 	
+	public void addCustomerloanPK() {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session session = hibernateUtil.getSessionFactory().openSession();
+		CustomerLoanPK customerLoanPk = new CustomerLoanPK();
+		customerLoanPk.setCustomerId(101);
+		customerLoanPk.setLoanId(5001);
+		CustomerLoan customerLoan = new CustomerLoan();
+		customerLoan.setPk(customerLoanPk);
+		customerLoan.setAmountAvailed(1500000);
+		customerLoan.setLoanIdEligible(25000000);
+		customerLoan.setTenureInYears(20);
+		CustomerLoanPK id = (CustomerLoanPK)session.save(customerLoan);
+		System.out.println("id :: "+id);
+	}
+	public void addNewCustomerNewLocker(Customer c,Locker l) {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session session = hibernateUtil.getSessionFactory().openSession();
+		c.setLocker(l);
+		Transaction t = session.beginTransaction();
+		int id = (Integer)session.save(c);
+		t.commit();
+		System.out.println("id:: "+id);
+	}
 }	
