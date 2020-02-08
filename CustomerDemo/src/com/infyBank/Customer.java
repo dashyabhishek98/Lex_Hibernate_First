@@ -29,7 +29,7 @@ public class Customer {
 	private Calendar dateOfBirth;
 	private String address;
 	private Long phoneNo;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="lockerId" , unique=true)
 	private Locker locker;
 	

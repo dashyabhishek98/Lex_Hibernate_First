@@ -101,4 +101,23 @@ public class CustomerDAO implements ICustomer{
 		t.commit();
 		System.out.println("id:: "+id);
 	}
-}	
+	
+	public void addNewLocker(Locker l) {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session session = hibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		String id = (String)session.save(l);
+		t.commit();
+		System.out.println("L_id:: "+id);
+	}
+	public void deleteCustomerLocker(Integer cid) {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session session = hibernateUtil.getSessionFactory().openSession();
+		Customer c = (Customer)session.load(Customer.class, cid);
+		System.out.println(c.getCustomerName());
+		Transaction t = session.beginTransaction();
+		session.delete(c);
+		t.commit();
+		System.out.println("Delete Successfull");		
+	}
+}

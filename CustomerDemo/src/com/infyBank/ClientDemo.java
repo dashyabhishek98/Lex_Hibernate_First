@@ -31,14 +31,15 @@ public class ClientDemo {
 		/*cd1.addCustomerloanPK();*/
 		
 		Customer c = new Customer();
-		c.setCustomerName("Abhi");
+		c.setCustomerName("Abhishek");
 		Calendar cal = Calendar.getInstance();
 		cal.set(1995, 05, 17);
 		c.setDateOfBirth(cal);
 		c.setAddress("Kolkata");
 		c.setPhoneNo(9999999l);
-		Locker l = new Locker("LOC101", "small", 1100.0);
-		cd1.addNewCustomerNewLocker(c, null);
-		
+		Locker l = new Locker("LOC103", "medium", 1200.0);
+		cd1.addNewCustomerNewLocker(c, l);
+		//cd1.addNewLocker(l);
+		//cd1.deleteCustomerLocker(2);
 	}
 }
