@@ -78,4 +78,40 @@ public class CustomerDAO implements ICustomer{
 		return rowsAffected;
 	}
 	
+	public void newCustomerNewAddress(Customer c,Address a) {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session session = hibernateUtil.getSessionFactory().openSession();
+		Transaction tnx = session.beginTransaction(); 
+		int id = (Integer)session.save(c);
+		tnx.commit();
+		session.close();
+		System.out.println("Customer_Id : "+id);
+	}
+	
+	public void deleteCustomerAndAddress(int custId) {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session session = hibernateUtil.getSessionFactory().openSession();
+		Customer c = (Customer)session.load(Customer.class, custId);
+		//c.setAddress(null);
+		Transaction tnx = session.beginTransaction();
+		
+		session.delete(c);
+		tnx.commit();
+		session.close();
+		System.out.println("delete successfull");
+	}
+	
+	public void updateCustomerAndAddress(int cid) {
+		HibernateUtil hibernateUtil = new HibernateUtil();
+		Session session = hibernateUtil.getSessionFactory().openSession();
+		Customer c = (Customer)session.load(Customer.class, cid);
+		Address add = c.getAddress();
+		add.setDistrict("Kanpur");
+		Transaction tnx = session.beginTransaction();
+		int id = (Integer)session.save(c);
+		tnx.commit();
+		session.close();
+		System.out.println("CustomerId  : "+id);
+	}
+	
 }	
